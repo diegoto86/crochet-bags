@@ -13,6 +13,21 @@ describe("validateLandingData", () => {
     expect(validateLandingData(validData)).toEqual([]);
   });
 
+  it("accepts instagram URLs without www and with trailing slash", () => {
+    const result = validateLandingData({
+      ...validData,
+      instagramUrl: "https://instagram.com/tu_marca/",
+    });
+
+    expect(result).toEqual([]);
+  });
+
+  it("validates undefined input safely", () => {
+    const result = validateLandingData();
+
+    expect(result).toHaveLength(4);
+  });
+
   it("requires at least three products", () => {
     const result = validateLandingData({ ...validData, products: [{}, {}] });
     expect(result.some((error) => error.includes("3 productos"))).toBe(true);
@@ -24,7 +39,7 @@ describe("validateLandingData", () => {
   });
 
   it("requires a valid Instagram URL", () => {
-    const result = validateLandingData({ ...validData, instagramUrl: "https://instagram.com/tu_marca" });
+    const result = validateLandingData({ ...validData, instagramUrl: "https://example.com/tu_marca" });
     expect(result.some((error) => error.includes("Instagram"))).toBe(true);
   });
 });
