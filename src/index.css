@@ -1,5 +1,7 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #1d2433;
+  background: #f6f7fb;
 }
 
 * {
@@ -8,4 +10,78 @@
 
 body {
   margin: 0;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.badge {
+  display: inline-block;
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #efe7ff;
+  color: #5b38a8;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  text-decoration: none;
+  border: 1px solid #d4d8e5;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: inherit;
+  font-weight: 600;
+}
+
+.btn.primary {
+  background: #3a66ff;
+  color: #fff;
+  border-color: #3a66ff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.product {
+  background: #fafbff;
+  border: 1px solid #ebedf6;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.price {
+  font-weight: 700;
+  color: #3a66ff;
+}
+
+.warning {
+  border: 1px solid #ffd7a0;
+  background: #fffaf1;
 }
