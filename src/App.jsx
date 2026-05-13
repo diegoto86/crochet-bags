@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { siteContent } from "./contentLoader";
 import { validateLandingData } from "./landingData";
 
@@ -73,6 +73,7 @@ const copy = {
       story: "Historia",
       contact: "Contacto",
     },
+    collectionCta: "Descubrir best sellers",
     whatsappMessage: "Hola Lola Faletti, quiero consultar por una cartera de crochet.",
     productAlt: {
       main: "cartera de crochet vista principal",
@@ -104,6 +105,7 @@ const copy = {
       story: "Story",
       contact: "Contact",
     },
+    collectionCta: "Discover the bestsellers",
     whatsappMessage: "Hello Lola Faletti, I would like to ask about a crochet bag.",
     productAlt: {
       main: "crochet bag main view",
@@ -220,6 +222,7 @@ const galleryImages = [
 
 function App() {
   const [language, setLanguage] = useState("es");
+  const productRailRef = useRef(null);
   const t = copy[language];
   const content = siteContent[language];
   const whatsappUrl = `https://wa.me/${landing.whatsappNumber}?text=${encodeURIComponent(
@@ -234,6 +237,20 @@ function App() {
   useEffect(() => {
     document.documentElement.lang = language;
   }, [language]);
+
+  function scrollProductRail(direction) {
+    const rail = productRailRef.current;
+
+    if (!rail) {
+      return;
+    }
+
+    const scrollAmount = rail.clientWidth * 0.92;
+    rail.scrollBy({
+      left: direction * scrollAmount,
+      behavior: "smooth",
+    });
+  }
 
   return (
     <main>
@@ -311,36 +328,58 @@ function App() {
       </section>
 
       <section id="collection" className="section collection reveal">
-        <div className="section-heading">
-          <div>
-            <p className="kicker">{content.collection.meta.kicker}</p>
-            <h2>{content.collection.meta.title}</h2>
-          </div>
-          <p className="section-description">{content.collection.meta.description}</p>
+        <div className="collection-rail-heading">
+          <h2>{content.collection.meta.kicker}</h2>
+          <a href={content.topbar.meta.href || "#occasion-edit"}>
+            <span>{t.collectionCta}</span>
+            <span aria-hidden="true">›</span>
+          </a>
         </div>
 
-        <div className="product-grid">
-          {landing.products.map((item) => (
-            <article key={item.id} className="product-card">
-              <a className="product-media" href={whatsappUrl} target="_blank" rel="noreferrer">
-                <img
-                  src={item.images[0]}
-                  alt={`${item.name} ${item.color[language]} ${t.productAlt.main}`}
-                />
-                <img
-                  src={item.images[1]}
-                  alt={`${item.name} ${item.color[language]} ${t.productAlt.detail}`}
-                />
-              </a>
-              <div className="product-info">
-                <div>
-                  <h3>{item.name}</h3>
-                  <span>{item.color[language]}</span>
+        <div className="product-rail-shell">
+          <button
+            className="rail-control prev"
+            type="button"
+            aria-label={language === "es" ? "Ver productos anteriores" : "View previous products"}
+            onClick={() => scrollProductRail(-1)}
+          >
+            ‹
+          </button>
+          <div
+            className="product-rail"
+            aria-label={content.collection.meta.kicker}
+            ref={productRailRef}
+          >
+            {landing.products.map((item) => (
+              <article key={item.id} className="product-card">
+                <a className="product-media" href={whatsappUrl} target="_blank" rel="noreferrer">
+                  <img
+                    src={item.images[0]}
+                    alt={`${item.name} ${item.color[language]} ${t.productAlt.main}`}
+                  />
+                  <img
+                    src={item.images[1]}
+                    alt={`${item.name} ${item.color[language]} ${t.productAlt.detail}`}
+                  />
+                </a>
+                <div className="product-info">
+                  <div>
+                    <h3>{item.name}</h3>
+                    <span>{item.color[language]}</span>
+                  </div>
+                  <strong>{item.price}</strong>
                 </div>
-                <strong>{item.price}</strong>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
+          <button
+            className="rail-control next"
+            type="button"
+            aria-label={language === "es" ? "Ver mas productos" : "View more products"}
+            onClick={() => scrollProductRail(1)}
+          >
+            ›
+          </button>
         </div>
       </section>
 
