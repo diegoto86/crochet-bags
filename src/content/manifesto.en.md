@@ -1,1 +1,6 @@
-Made for warm light, slow movement, and the space between cities. Lola Faletti turns crochet into a modern object of ease: tactile, architectural, and quietly sensual.
+Lola Faletti is not about decorating women.
+
+It is about accompanying a presence that already exists:
+the woman who enters with calm,
+chooses with judgment,
+and does not need to look like anyone else.

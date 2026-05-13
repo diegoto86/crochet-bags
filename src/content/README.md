@@ -1,11 +1,13 @@
 # Content editing
 
-Edit `manifesto.es.md` to change the main Spanish editorial paragraph.
+Homepage copy lives in this folder as Spanish and English markdown files.
 
-Edit `manifesto.en.md` to change the English version.
+Files with frontmatter between `---` lines expose fields such as `title`, `description`, `kicker`, and CTA labels.
 
-Edit `story.es.md` to change the Spanish story paragraph.
+Files without frontmatter use the whole file as body copy.
 
-Edit `story.en.md` to change the English story paragraph.
+`topbar.*.md` controls the black announcement banner.
 
-Keep it short: one paragraph works best.
+`occasion.*.md` controls the occasion edit section.
+
+Keep each section concise. The layout is designed for editorial paragraphs, not long articles.
