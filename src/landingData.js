@@ -12,19 +12,19 @@ export function validateLandingData(input = {}) {
   const errors = [];
 
   if (!Array.isArray(products) || products.length < 3) {
-    errors.push("La colección debe tener al menos 3 productos.");
+    errors.push("La coleccion debe tener al menos 3 productos.");
   }
 
   if (!Array.isArray(steps) || steps.length !== 3) {
-    errors.push("La sección de pedido debe tener exactamente 3 pasos.");
+    errors.push("La seccion de pedido debe tener exactamente 3 pasos.");
   }
 
   if (!WHATSAPP_NUMBER_PATTERN.test(String(whatsappNumber).trim())) {
-    errors.push("El número de WhatsApp debe incluir solo dígitos y código de país.");
+    errors.push("El numero de WhatsApp debe incluir solo digitos y codigo de pais.");
   }
 
   if (!INSTAGRAM_URL_PATTERN.test(String(instagramUrl).trim())) {
-    errors.push("La URL de Instagram debe ser un perfil válido de Instagram.");
+    errors.push("La URL de Instagram debe ser un perfil valido de Instagram.");
   }
 
   return errors;

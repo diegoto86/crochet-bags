@@ -1,4 +1,4 @@
-# Crochet Bags
+# Lola Faletti
 
 Landing page mobile-first para bolsos de crochet.
 
@@ -27,7 +27,7 @@ This project is configured to auto-deploy to GitHub Pages via GitHub Actions.
 
 1. Push this repository to GitHub.
 2. Ensure your default branch is `main` or `master`.
-3. In GitHub, go to **Settings → Pages**.
+3. In GitHub, go to **Settings -> Pages**.
 4. Under **Build and deployment**, set **Source** to **GitHub Actions**.
 5. Push to `main` or `master` to trigger deployment.
 
